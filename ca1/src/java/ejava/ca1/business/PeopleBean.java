@@ -32,11 +32,8 @@ public class PeopleBean {
         people.setEmail(email);
         people.setName(name);
         people.setPid(pid);
-        
-        System.out.println("peole detailssss" +email+ "," +name +"," +pid);
-        
+               
         em.persist(people);
-        System.out.println("sfsfgsdfhsdfkhsdfkjgskfysjsyhgh");
     }
         
         public List<Appointment> getAppointmentDetails(String emailID){

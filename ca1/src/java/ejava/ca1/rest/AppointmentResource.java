@@ -28,9 +28,7 @@ public class AppointmentResource {
     @Produces("application/json")
     public Response getAppointments(@PathParam("email") String email){
         
-        System.out.println("inside Verfied appppp" +email);
      appointments = appointmentBean.getAppointmentDetails(email);
-        System.out.println("appointment list>>>>>>>>>>>>>." +appointments);
         JsonArrayBuilder builder = Json.createArrayBuilder();
     JsonObjectBuilder arrBuilder = Json.createObjectBuilder();
     for(Appointment a :appointments ){

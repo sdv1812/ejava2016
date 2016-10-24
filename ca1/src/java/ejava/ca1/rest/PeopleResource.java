@@ -48,7 +48,6 @@ public class PeopleResource {
     @Produces("application/json")
     public Response verifyAppointment(@QueryParam("email") String email){
         
-     //   System.out.println("inside Verfied appppp" +email);
      appointments = peopleBean.getAppointmentDetails(email);
     JsonObjectBuilder arrBuilder = Json.createObjectBuilder();
     for(Appointment a :appointments ){
