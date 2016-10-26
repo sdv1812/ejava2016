@@ -17,6 +17,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Response;
 
 @Path("/appointment/{email}")
@@ -26,7 +28,7 @@ public class AppointmentResource {
     List<Appointment> appointments;
     @GET
     @Produces("application/json")
-    public Response getAppointments(@PathParam("email") String email){
+    public Response getAppointments(@PathParam("email") String email, @Suspended AsyncResponse async){
         
      appointments = appointmentBean.getAppointmentDetails(email);
         JsonArrayBuilder builder = Json.createArrayBuilder();
