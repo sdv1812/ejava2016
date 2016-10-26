@@ -6,11 +6,12 @@
 package ejava.ca1.rest;
 
 import ejava.ca1.business.PeopleBean;
-import ejava.ca1.model.Appointment;
+import ejava.ca1.model.People;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -21,10 +22,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
-/**
- *
- * @author Sanskar
- */
+
 @RequestScoped
 
 @Path("/people")  
@@ -43,20 +41,24 @@ public class PeopleResource {
           
           return Response.ok().build();
       }
-        List<Appointment> appointments;
+      
     @GET
     @Produces("application/json")
-    public Response verifyAppointment(@QueryParam("email") String email){
-        
-     appointments = peopleBean.getAppointmentDetails(email);
-    JsonObjectBuilder arrBuilder = Json.createObjectBuilder();
-    for(Appointment a :appointments ){
-        arrBuilder.add("AppId", a.getApptId())
-                    .add("Description",a.getDescription())
-                    .add("pid",a.getPid().getPid())
-                    .add("appDate",a.getApptDate().toString());
+    public Response verifyEmail(@QueryParam("email") String email){
+                            JsonArrayBuilder builder = Json.createArrayBuilder();
+                JsonObjectBuilder arrBuilder = Json.createObjectBuilder();
+            List<People> p = peopleBean.getAppointmentDetails(email);
+            if(p!=null){
+                for(People peep:p){
+                    arrBuilder.add("email", peep.getEmail())
+                            .add("name", peep.getName())
+                            .add("pid",peep.getPid());
+                   builder.add(arrBuilder);
+                }
+                return Response.ok(builder.build()).build(); 
+            }
+              return Response.status(Response.Status.BAD_REQUEST).build();
     }
-    return Response.ok(arrBuilder.build()).build();        
+         
  
-}
 }

@@ -12,10 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author Sanskar
- */
+
 @Stateless
 public class AppointmentBean {
         @PersistenceContext private EntityManager em;

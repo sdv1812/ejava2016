@@ -14,10 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author Sanskar
- */
+
 @Stateless
 
 public class PeopleBean {
@@ -26,8 +23,6 @@ public class PeopleBean {
     public void createPeople(String name, String email){
        String pid = UUID.randomUUID().toString().substring(0, 8);
         
-//       TypedQuery<People> query = em.createNamedQuery(
-//				"People.create", People.class);
         People people = new People();
         people.setEmail(email);
         people.setName(name);
@@ -36,12 +31,10 @@ public class PeopleBean {
         em.persist(people);
     }
         
-        public List<Appointment> getAppointmentDetails(String emailID){
-            System.out.println("people inside appbean" +emailID);
-            TypedQuery<Appointment> query = em.createQuery("select a.appointmentList from People a where  a.email = :email",Appointment.class);
-                query.setParameter("email", emailID);               
-		List<Appointment> people = query.getResultList();
-                System.out.println("people listksdgfadhgkhsdaf" +people.toString());
+        public List<People> getAppointmentDetails(String email){
+            TypedQuery<People> query = em.createQuery("select a from People a where  a.email = :email",People.class);
+                query.setParameter("email", email);               
+		List<People> people = query.getResultList();
                 return people; 
         }
     
