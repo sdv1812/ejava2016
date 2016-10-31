@@ -14,8 +14,8 @@ and open the template in the editor.
 		<h1>Login</h1>
 		<h:form>
 			<h:panelGrid columns="2">
-				username:
-				<h:inputText value="#{loginView.username}"/>
+				Username:
+                                <h:inputText value="#{loginView.username}"/>
 
 				Password:
 				<h:inputSecret value="#{loginView.password}"/>
@@ -23,6 +23,9 @@ and open the template in the editor.
 				<h:panelGroup/>
 				<h:commandButton value="Login" action="#{loginView.login()}"/>
 			</h:panelGrid>
+                   <!-- <h:panelGrid columns="2">
+                        <!h:commandButton value="Register Now" action="register"/>   
+                    </h:panelGrid> -->
 		</h:form>
     </h:body>
 </html>
