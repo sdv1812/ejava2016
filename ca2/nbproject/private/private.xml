@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+
+        <group>
+            <file>file:/F:/NUS%20%20Projects/EjavaCA/CA2/src/java/ejava/ca2/web/UserBean.java</file>
+            <file>file:/F:/NUS%20%20Projects/EjavaCA/CA2/src/java/ejava/ca2/views/LoginView.java</file>
+        </group>
+>>>>>>> baf344dcd6824581c89b4c9e9acb9cd95adec51d
     </open-files>
 </project-private>
