@@ -6,9 +6,6 @@
 package ejava.ca2.views;
 
 import ejava.ca2.web.*;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -61,11 +58,7 @@ public class LoginView{
     }
 
     public void register() {
-        try {
             userbean.register(username, password);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }
