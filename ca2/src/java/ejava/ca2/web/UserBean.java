@@ -5,7 +5,7 @@
  */
 package ejava.ca2.web;
 
-import ejava.ca2.model.User;
+import ejava.ca2.model.Users;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,8 +21,8 @@ public class UserBean {
 
     public void register(String username, String password){
         
-            User user = new User();
-            user.setUsername(username);
+            Users user = new Users();
+            user.setUserid(username);
             String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);       
             user.setPassword(sha256hex);
             em.persist(user);
