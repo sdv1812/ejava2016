@@ -19,8 +19,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UserBean {
 
-    @PersistenceContext
-    private EntityManager em;
+    @PersistenceContext private EntityManager em;
 
     public void register(String username, String password) throws NoSuchAlgorithmException {
         User user = new User();

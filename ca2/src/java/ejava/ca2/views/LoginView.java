@@ -3,33 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejava.ca2.web;
+package ejava.ca2.views;
 
-import java.io.Serializable;
+import ejava.ca2.web.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 
 import javax.faces.context.FacesContext;
-//import javax.inject.Named;
-////import javax.inject.Named;
+import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-@ManagedBean(name = "loginView")
+@Named
 @RequestScoped
-public class LoginView implements Serializable {
+public class LoginView{
 
-    private static final long serialVersionUID = 1L;
+    @EJB private UserBean userbean;
+    
     private String username;
     private String password;
-    @EJB
-    private UserBean userbean;
-
+    
     public String getUsername() {
         return username;
     }
