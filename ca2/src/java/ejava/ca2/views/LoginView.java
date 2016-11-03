@@ -41,20 +41,15 @@ public class LoginView{
     }
 
     public String login() {
-        System.out.println("jsdfashdjkhsfdj");
-        System.out.println("faces context");
         FacesContext fc = FacesContext.getCurrentInstance();
-        System.out.println("faces context" + fc);
         HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
         try {
-            System.out.println("before authentication" + username + "." + password);
             req.login(username, password);
-            System.out.println("inside login ");
         } catch (ServletException e) {
             fc.addMessage(username, new FacesMessage("Incorrect Login"));
             return (null);
         }
-        return ("Menu");
+        return ("menu?faces-redirect=true");
     }
 
     public void register() {

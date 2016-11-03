@@ -6,6 +6,8 @@
 package ejava.ca2.web;
 
 
+import ejava.ca2.model.Groups;
+import ejava.ca2.model.GroupsPK;
 import ejava.ca2.model.Users;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,10 +25,18 @@ public class UserBean {
     public void register(String username, String password){
         
             Users user = new Users();
+            Groups group = new Groups();
+            GroupsPK groupPk = new GroupsPK();
+            groupPk.setGroupid("customer");
+            groupPk.setUserid(username);
+            
+            group.setGroupsPK(groupPk);
+            
             user.setUserid(username);
-            String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);       
+            String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password); 
             user.setPassword(sha256hex);
             em.persist(user);
+            em.persist(group);
         
     }
 
