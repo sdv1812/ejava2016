@@ -25,11 +25,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "notes")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n"),
+    @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n ORDER BY n.notesPK.dateTime ASC"),
     @NamedQuery(name = "Notes.findByUserid", query = "SELECT n FROM Notes n WHERE n.notesPK.userid = :userid"),
     @NamedQuery(name = "Notes.findByContent", query = "SELECT n FROM Notes n WHERE n.content = :content"),
     @NamedQuery(name = "Notes.findByTitle", query = "SELECT n FROM Notes n WHERE n.title = :title"),
-    @NamedQuery(name = "Notes.findByCategory", query = "SELECT n FROM Notes n WHERE n.category = :category"),
+    @NamedQuery(name = "Notes.findByCategory", query = "SELECT n FROM Notes n WHERE n.category = :category ORDER BY n.notesPK.dateTime ASC"),
     @NamedQuery(name = "Notes.findByDateTime", query = "SELECT n FROM Notes n WHERE n.notesPK.dateTime = :dateTime")})
 public class Notes implements Serializable {
 
