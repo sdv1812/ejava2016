@@ -1,0 +1,15 @@
+{
+  "name": "ca2",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/sdv1812/ejava2016",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -13,16 +13,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Srishti Miglani
- */
+
 @Stateless
 public class UserBean {
 
     @PersistenceContext private EntityManager em;
 
-    public void register(String username, String password){
+    public int register(String username, String password){
         
             Users user = new Users();
             Groups group = new Groups();
@@ -35,9 +32,12 @@ public class UserBean {
             user.setUserid(username);
             String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password); 
             user.setPassword(sha256hex);
+            if(em.find(Users.class, username)!=null){
+                return -1;
+            }
             em.persist(user);
             em.persist(group);
-        
+            return 0;        
     }
 
 }

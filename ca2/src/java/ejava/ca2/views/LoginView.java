@@ -49,11 +49,28 @@ public class LoginView{
             fc.addMessage(username, new FacesMessage("Incorrect Login"));
             return (null);
         }
-        return ("menu?faces-redirect=true");
+        return ("/secure/menu?faces-redirect=true");
     }
 
-    public void register() {
-            userbean.register(username, password);
+    public String register() {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            int message = userbean.register(username, password);
+            if(message == -1){
+                  fc.addMessage(username, new FacesMessage("User Already Exists"));
+                  return null;
+            }else{
+                  fc.addMessage(username, new FacesMessage("Successfully Registered"));
+                  return ("login?send-redirect=true");
+            }
+    }
+    
+    public String logout() throws ServletException{
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
+        req.getSession().invalidate();
+        req.logout();
+        return ("/login?send-redirect=true");
+        
     }
 
 }

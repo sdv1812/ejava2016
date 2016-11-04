@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet library="css" name="table-style.css"/>
+               <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div align="center">
+         <h:panelGrid columns="2">
+		<ui:insert name="header" >
+		  <ui:include src="/secure/header.xhtml" />
+		</ui:insert>
+             <h:commandButton value="Go to Main Menu" action="menu"/>
+	<h:panelGroup/>
+	</h:panelGrid>
+            </div>
+            <table class="order-table" align="center">
+    		<tr>
+    			<th class="order-table-header">Title</th>
+    			<th class="order-table-header">Post Date and Time</th>
+    			<th class="order-table-header">Category</th>
+    			<th class="order-table-header">Content</th>
+    		</tr>
+    		<tbody>
+                    <ui:repeat var="o" value="#{noteView.notes}" varStatus="status">
+                        <h:panelGroup rendered="#{status.even}">
+	   			  <tr>
+		    			<td class="order-table-header">#{o.title}</td>
+		    			<td class="order-table-header">#{o.notesPK.dateTime}</td>
+		    			<td class="order-table-header">#{o.category}</td>
+		    			<td class="order-table-header">#{o.content}</td>
+		    		  </tr>
+	    			</h:panelGroup>
+                               <h:panelGroup rendered="#{status.odd}">
+	   			  <tr>
+		    			<td class="order-table-header">#{o.title}</td>
+		    			<td class="order-table-header">#{o.notesPK.dateTime}</td>
+		    			<td class="order-table-header">#{o.category}</td>
+		    			<td class="order-table-header">#{o.content}</td>
+		    		  </tr>
+	    			</h:panelGroup>
+	    		</ui:repeat>
+    		</tbody>
+                       
+    	</table>
+        </h:form>
+    </h:body>
+</html>
+

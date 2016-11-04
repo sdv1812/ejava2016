@@ -5,19 +5,27 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-        <h:body>
-    <h:form>
-       <h:panelGrid columns="2">
-				Username:
-				<h:inputText value="#{loginView.username}"/>
+    <h:body>
+        <h:form>
+            <div align="center">
+                <h1> Register </h1>
+                <h:panelGrid columns="2">
+                    Username:
+                    <h:inputText value="#{loginView.username}"/>
 
-				Password:
-				<h:inputSecret value="#{loginView.password}"/>
+                    Password:
+                    <h:inputSecret value="#{loginView.password}"/>
+                    <h:panelGroup/>
+                </h:panelGrid>
+                <h:panelGrid columns="3">
+                    <input type ="hidden"/>
+                    <h:commandButton value="Sign Up" action="#{loginView.register()}"/>
+                    <h:commandButton value="Go back" action="login"/>  
+                </h:panelGrid>
 
-				<h:panelGroup/>
-				<h:commandButton value="Sign Up" action="#{loginView.register()}"/>
-			</h:panelGrid> 
-    </h:form>   
+
+            </div>
+        </h:form>   
     </h:body>
 </html>
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bowerComponents/bootstrap/dist/css/bootstrap.css">
+        <script src="bowerComponents/jquery/dist/jquery.min.js"></script>
+        <script src="resources/js/noteDisplay.js" type="text/javascript"></script>
+        <script src="bowerComponents/bootstrap/dist/js/bootstrap.min.js"></script>
+            
+    </head>
+    <body>
+                <div class="container">
+        <div class="span12"> <h1>Choose a category to display notes</h1></div>
+            <div class="col-md-8">
+            <select id="category" class="selectpicker form-control">
+                <option name="social" value="Social"> Social </option>
+                <option name="ForSale" value="For Sale"> For Sale </option>
+                <option name="jobs" value="Jobs"> Jobs </option>
+                <option name="Tution" value="Tution"> Tution </option> 
+                <option name="all" value="All"> All </option>  
+            </select>
+           </div>  
+            <div class="col-md-4">
+                 <button class="btn btn-warning" type="button" id="Ok">
+		Show Posts
+		</button>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <label for="chatarea">Notes:</label>
+            <textarea id="noteDisplayArea" rows="40" cols="50" disabled class="form-control"></textarea>
+        </div>
+    </body>
+</html>

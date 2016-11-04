@@ -6,6 +6,7 @@
 package ejava.ca2.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -19,10 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Sanskar
- */
+
 @Entity
 @Table(name = "notes")
 @XmlRootElement
@@ -30,8 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n"),
     @NamedQuery(name = "Notes.findByUserid", query = "SELECT n FROM Notes n WHERE n.notesPK.userid = :userid"),
     @NamedQuery(name = "Notes.findByContent", query = "SELECT n FROM Notes n WHERE n.content = :content"),
-    @NamedQuery(name = "Notes.findByTitle", query = "SELECT n FROM Notes n WHERE n.notesPK.title = :title"),
-    @NamedQuery(name = "Notes.findByCategory", query = "SELECT n FROM Notes n WHERE n.notesPK.category = :category")})
+    @NamedQuery(name = "Notes.findByTitle", query = "SELECT n FROM Notes n WHERE n.title = :title"),
+    @NamedQuery(name = "Notes.findByCategory", query = "SELECT n FROM Notes n WHERE n.category = :category"),
+    @NamedQuery(name = "Notes.findByDateTime", query = "SELECT n FROM Notes n WHERE n.notesPK.dateTime = :dateTime")})
 public class Notes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,9 +38,17 @@ public class Notes implements Serializable {
     protected NotesPK notesPK;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 150)
+    @Size(min = 1, max = 128)
     @Column(name = "content")
     private String content;
+    @Size(max = 200)
+    @Column(name = "title")
+    private String title;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "category")
+    private String category;
     @JoinColumn(name = "userid", referencedColumnName = "userid", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Users users;
@@ -53,13 +60,14 @@ public class Notes implements Serializable {
         this.notesPK = notesPK;
     }
 
-    public Notes(NotesPK notesPK, String content) {
+    public Notes(NotesPK notesPK, String content, String category) {
         this.notesPK = notesPK;
         this.content = content;
+        this.category = category;
     }
 
-    public Notes(String userid, String title, String category) {
-        this.notesPK = new NotesPK(userid, title, category);
+    public Notes(String userid, Date dateTime) {
+        this.notesPK = new NotesPK(userid, dateTime);
     }
 
     public NotesPK getNotesPK() {
@@ -76,6 +84,22 @@ public class Notes implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Users getUsers() {

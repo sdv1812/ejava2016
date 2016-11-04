@@ -6,16 +6,16 @@
 package ejava.ca2.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Sanskar
- */
+
 @Embeddable
 public class NotesPK implements Serializable {
 
@@ -26,22 +26,16 @@ public class NotesPK implements Serializable {
     private String userid;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "title")
-    private String title;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "category")
-    private String category;
+    @Column(name = "date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
 
     public NotesPK() {
     }
 
-    public NotesPK(String userid, String title, String category) {
+    public NotesPK(String userid, Date dateTime) {
         this.userid = userid;
-        this.title = title;
-        this.category = category;
+        this.dateTime = dateTime;
     }
 
     public String getUserid() {
@@ -52,28 +46,19 @@ public class NotesPK implements Serializable {
         this.userid = userid;
     }
 
-    public String getTitle() {
-        return title;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (userid != null ? userid.hashCode() : 0);
-        hash += (title != null ? title.hashCode() : 0);
-        hash += (category != null ? category.hashCode() : 0);
+        hash += (dateTime != null ? dateTime.hashCode() : 0);
         return hash;
     }
 
@@ -87,10 +72,7 @@ public class NotesPK implements Serializable {
         if ((this.userid == null && other.userid != null) || (this.userid != null && !this.userid.equals(other.userid))) {
             return false;
         }
-        if ((this.title == null && other.title != null) || (this.title != null && !this.title.equals(other.title))) {
-            return false;
-        }
-        if ((this.category == null && other.category != null) || (this.category != null && !this.category.equals(other.category))) {
+        if ((this.dateTime == null && other.dateTime != null) || (this.dateTime != null && !this.dateTime.equals(other.dateTime))) {
             return false;
         }
         return true;
@@ -98,7 +80,7 @@ public class NotesPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ejava.ca2.model.NotesPK[ userid=" + userid + ", title=" + title + ", category=" + category + " ]";
+        return "ejava.ca2.model.NotesPK[ userid=" + userid + ", dateTime=" + dateTime + " ]";
     }
     
 }
